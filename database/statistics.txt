@@ -1,0 +1,16 @@
+---
+:name: ggg
+:attempts_count: 8
+:secret_code: '4322'
+---
+:name: ggg
+:attempts_count: 4
+:secret_code: '1415'
+---
+:name: aaaa
+:attempts_count: 5
+:secret_code: '5345'
+---
+:name: aaa
+:attempts_count: 4
+:secret_code: '3462'
