@@ -1,0 +1,46 @@
+body {
+  background-color: #8577da;
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+#game {
+  width: 30%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 145px;
+}
+
+.player_input {
+  display: inline;
+  margin: 0 3px 0 0;
+}
+
+.result {
+  margin: 0 0 0 0;
+  float: left;
+  font-size: 20px;
+  height: 20px
+}
+
+.input {
+  margin: 0px 0 0 45px;
+  font-size: 19px;
+}
+
+.hint {
+  display: inline;
+}
+
+.start_new_game {
+  float: right;
+}
+
+.wrap_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}

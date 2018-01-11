@@ -14,3 +14,11 @@
 :name: aaa
 :attempts_count: 4
 :secret_code: '3462'
+---
+:name: Gkkk
+:attempts_count: 7
+:secret_code: '4165'
+---
+:name: ggg
+:attempts_count: 8
+:secret_code: '1215'
