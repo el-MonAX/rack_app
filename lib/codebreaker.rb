@@ -2,6 +2,7 @@ require 'erb'
 require 'yaml'
 require 'rack'
 require 'codebreaker'
+require 'codebreaker'
 
 class Racker
   def self.call(env)
@@ -126,5 +127,4 @@ class Racker
   def game_session
     @request.session[:game]
   end
-
 end
