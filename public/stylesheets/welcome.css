@@ -1,0 +1,40 @@
+body {
+  background-color: #8577da;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+#welcome {
+  width: 30%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 30px 40px;
+  border: solid 2px black;
+  margin-top: 145px;
+}
+
+.start_game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player_name {
+  margin-left: 5px;
+  width: 24%;
+}
+
+.attempts_quantity {
+  width: 6%;
+  margin: 0 5px;
+}
+
+.label_quantity {
+  margin: 0 0 0 15px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>You win!</title>
+    <link rel="stylesheet" href="/stylesheets/win.css" type="text/css">
+  </head>
+  <body>
+    <div id="win">
+      <h3><%= cookie_player_name %> you win!</h3>
+      <div class="wrap_form">
+        <form class="new_game" method="post" action="/">
+          <input type="submit" value="New game">
+        </form>
+        <form method="post" action="/start_game">
+          <input type="submit" value="Play again">
+        </form>
+      </div>
+    </div>
+    <table id="statistics">
+      <th class="title">Statistics</th>
+      <tr>
+        <th class="name">Name:</th>
+        <th class="attempt">Attempt spent:</th>
+        <th class="secret">Secret code:</th>
+      </tr>
+      <% @statistics.each do |hash| %>
+        <tr>
+          <td class="player_name"><%= hash[:name] %></td>
+          <td class="attempts_count"><%= hash[:attempts_count] %></td>
+          <td class="secret_code"><%= hash[:secret_code] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
