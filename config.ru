@@ -1,4 +1,4 @@
-require './lib/codebreaker'
+require './lib/racker'
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :expire_after => 2592000,

@@ -1,6 +1,3 @@
-# require 'bundler/setup'
-# require 'codebreaker'
-#
 # RSpec.configure do |config|
 #   # Enable flags like --only-failures and --next-failure
 #   config.example_status_persistence_file_path = ".rspec_status"
@@ -13,10 +10,11 @@
 #   end
 # end
 
-require './lib/codebreaker'
+require './lib/racker'
+require './lib/actions'
 
 TEST_ENV = {
-  "rack.input"=> StringIO.new
+  'rack.input' => StringIO.new
 }
 
 RSpec.configure do |config|

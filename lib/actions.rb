@@ -1,29 +1,14 @@
+# frozen_string_literal: true
+
 require 'erb'
 require 'yaml'
-require 'rack'
-require 'codebreaker'
 require 'codebreaker'
 
-class Racker
-  def self.call(env)
-    new(env).response.finish
-  end
+class Actions
+  attr_accessor :request
 
-  def initialize(env)
-    @request = Rack::Request.new(env)
-  end
-
-  def response
-    case @request.path
-    when '/'           then welcome
-    when '/start_game' then start_game
-    when "/game"       then game
-    when "/attempt"    then attempt
-    when "/hint"       then hint
-    when "/you_win"    then you_win
-    when "/you_lose"   then you_lose
-    else Rack::Response.new("Not Found", 404)
-    end
+  def initialize(request)
+    @request = request
   end
 
   def render(template)
@@ -35,14 +20,14 @@ class Racker
     Rack::Response.new do |response|
       response.delete_cookie("hint")
       if game_session
-        @request.session.clear
-        @request.session[:game] = Codebreaker::Game.new(cookie_player_name, cookie_attempts_quantity.to_i)
+        request.session.clear
+        request.session[:game] = Codebreaker::Game.new(cookie_player_name, cookie_attempts_quantity.to_i)
       else
         response.set_cookie("player_name", params_player_name)
         response.set_cookie("attempts_quantity", params_attempts_quantity)
-        @request.session[:game] = Codebreaker::Game.new(params_player_name, params_attempts_quantity.to_i)
+        request.session[:game] = Codebreaker::Game.new(params_player_name, params_attempts_quantity.to_i)
       end
-      @request.session[:result] = {}
+      request.session[:result] = {}
       response.redirect("/game")
     end
   end
@@ -53,7 +38,7 @@ class Racker
 
   def attempt
     answer = game_session.guess(params_player_code)
-    @request.session[:result][params_player_code] = answer
+    request.session[:result][params_player_code] = answer
     Rack::Response.new do |response|
       if game_session.victory?
         save_to_statistics
@@ -78,7 +63,7 @@ class Racker
   end
 
   def welcome
-    @request.session.clear
+    request.session.clear
     Rack::Response.new(render('welcome.html.erb'))
   end
 
@@ -101,30 +86,30 @@ class Racker
   end
 
   def params_player_code
-    @request.params["player_code"]
+    request.params["player_code"]
   end
 
   def params_player_name
-    @request.params["player_name"]
+    request.params["player_name"]
   end
 
   def params_attempts_quantity
-    @request.params["attempts_quantity"]
+    request.params["attempts_quantity"]
   end
 
   def cookie_player_name
-    @request.cookies["player_name"]
+    request.cookies["player_name"]
   end
 
   def cookie_attempts_quantity
-    @request.cookies["attempts_quantity"]
+    request.cookies["attempts_quantity"]
   end
 
   def cookie_hint
-    @request.cookies["hint"]
+    request.cookies["hint"]
   end
 
   def game_session
-    @request.session[:game]
+    request.session[:game]
   end
 end
