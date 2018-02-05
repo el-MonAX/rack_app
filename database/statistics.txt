@@ -1,0 +1,8 @@
+---
+:name: aaaa
+:attempts_count: 4
+:secret_code: '4234'
+---
+:name: tyi
+:attempts_count: 8
+:secret_code: '5624'
