@@ -16,7 +16,7 @@ class Racker
     case @request.path
     when '/'           then @actions.welcome
     when '/start_game' then @actions.start_game
-    when '/game '      then @actions.game
+    when "/game"       then @actions.game
     when '/attempt'    then @actions.attempt
     when '/hint'       then @actions.hint
     when '/you_win'    then @actions.you_win
