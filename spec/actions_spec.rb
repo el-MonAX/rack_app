@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 require './lib/racker'
+require './lib/actions'
+require 'rack/test'
 
 describe Actions do
   let(:racker) { Racker.new(TEST_ENV) }
@@ -15,12 +17,6 @@ describe Actions do
     it '@request exist and be kind of Rack::Request' do
       request = racker.instance_variable_get(:@request)
       expect(request).to be_kind_of(Rack::Request)
-    end
-  end
-
-  context '#render' do
-    it 'template "welcome.html.erb" contain "Welcome"' do
-      expect(racker.render("welcome.html.erb")).to include("Welcome")
     end
   end
 
@@ -225,17 +221,11 @@ describe Actions do
 
   context '#cookie_hint' do
     before { @request = racker.instance_variable_get(:@request) }
+    let(:request) { racker.instance_variable_get(:@request) }
 
     it '@request.cookies["hint"] return "***2"' do
       allow(@request).to receive(:cookies).and_return({"hint"=>"***2"})
       expect(racker.cookie_hint).to eq "***2"
-    end
-  end
-
-  context '#game_session' do
-    it 'not to be nil' do
-      racker.start_game
-      expect(racker.game_session).not_to be_nil
     end
   end
 end

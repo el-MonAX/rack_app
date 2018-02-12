@@ -53,7 +53,7 @@ class Actions
 
   def hint
     Rack::Response.new do |response|
-      if hint = game_session.check_hint
+      if hint == game_session.check_hint
         response.set_cookie("hint", hint)
         response.redirect("/game")
       else
